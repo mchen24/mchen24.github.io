@@ -53,79 +53,6 @@
 			.ellipsis:hover {font-weight: bold; cursor: pointer;}
 			#filter_by_tags { padding-bottom: 15px; }
 		</style>
-		<script type="text/javascript">
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-3316326-10']);
-		  _gaq.push(['_trackPageview']);
-
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-		</script>
-		<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-	    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script type="text/javascript">
-			var last_selected = false;
-			var valid_keys = ['recsys', 'fraud', 'sysml', 'graph', 'geom', 'mlfairness', 'robustness', 'rl', 'nlp']
-			$(window).on('hashchange', function(e){
-				var param = window.location.hash.substr(1);
-				//if(param != "") { filterBy(param, false); }
-			});
-			function checkForKey(mylist, key) {
-				for (i = 0; i < mylist.length; i++) {
-					if(mylist[i] == key) { return true; }
-				}
-				return false;
-			}
-			function filterBy(key, reset = true) {
-				if (!checkForKey(valid_keys,key)) {
-					key = "";
-				}
-				//window.location.hash = "#" + key
-				if (reset && key == last_selected) { 
-					last_selected = false; 
-					//window.location.hash = ""
-					$(".paper").fadeIn();
-					$(".tag_button").removeClass("tag_button_clicked");
-				} else { 
-					last_selected = key; 
-					$(".paper").filter(function(index) { return !$(this).hasClass(key); }).fadeOut();
-					$(".tag_button").filter(function(index) { return $(this).hasClass(key); }).addClass("tag_button_clicked");
-				}
-				$(".paper").filter(function(index) { return $(this).hasClass(key); }).fadeIn();
-				$(".tag_button").filter(function(index) { return !$(this).hasClass(key); }).removeClass("tag_button_clicked");
-				window.location.hash = ""
-			}
-			function jumpTo(loc) {
-				document.getElementById(loc).scrollIntoView();
-			}
-			$( document ).ready(function() {
-				var param = window.location.hash.substr(1);
-				if(param != "") { filterBy(param, false); }
-
-				// Handle very long author lists
-				authorlists = document.getElementsByClassName("allAuthors");
-				for (a = 0; a < authorlists.length; a++) {
-					auth = authorlists[a];
-					if (auth.offsetHeight > 40 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-						//auth.style.height = "2.1em";
-						//auth.style.overflow = "hidden";
-						auth.style.paddingBottom = "3px";
-
-						e = auth.getElementsByClassName("ellipsis")[0];
-						//e.style.display = "block";
-						e.addEventListener("click", function(c) {
-							console.log(c);
-							c.target.style.display="none";
-							c.target.parentElement.style.overflow="";
-							c.target.parentElement.style.height = "";
-						})
-					}
-				}
-			});
-		</script>
 	</head>
 	<body>
 		<div id='header2'></div>
@@ -134,7 +61,7 @@
 				<img src='minminc_profile.jpeg' title='Minmin Chen' alt='Minmin Chen' style='float: right; margin-top:0px; padding-right: 0px; padding-bottom: 10px; height:175px; clip-path: circle(80px at center);'/>
 				<div style='float: left; text-align: left; padding-top: 40px;'>
 					<h1 id='nametitle' style='font-size: 40px;' itemprop="name">Minmin Chen</h1>
-					<h2 class='subtitles'>Research Scientist at Google</h2>
+					<!--<h2 class='subtitles'>Research Scientist at Google</h2>-->
 				</div>
 			</div>
 			<div class='project'>
@@ -155,12 +82,14 @@
 					<span style='font-size: 1.3em; font-weight: bold;'>Select Publications</span> (<a href='https://scholar.google.com/citations?user=kR7DersAAAAJ&hl=en&oi=ao' target='_blank' rel="noopener noreferrer">Google Scholar</a>)
 				</div>
     <h4>Recommendation Systems</h4><ul><li class='paper recsys'>
-	<strong><a href='https://dl.acm.org/doi/pdf/10.1145/3523227.3546758'>Off-Policy Actor Critic for Recommender Systems</a></strong>
+	<li><strong><a href='https://dl.acm.org/doi/pdf/10.1145/3523227.3546758'>Off-Policy Actor Critic for Recommender Systems</a></strong>
 	<br /><div class='allAuthors'><span class='ellipsis'>...</span>Minmin Chen, Can Xu, Vince Gatto, Devanshu Jain, Aviral Kumar, Ed Chi </div>
-	<i><div class='Venue'><span class='ellipsis'>...</span>RecSys 2022</i>
+		<i><div class='Venue'><span class='ellipsis'>...</span>RecSys 2022</i></li>
 				
-	<strong><a href='https://dl.acm.org/doi/pdf/10.1145/3534678.3539073'>Surrogate for long-term user experience in recommender systems</a></strong>
+	<li><strong><a href='https://dl.acm.org/doi/pdf/10.1145/3534678.3539073'>Surrogate for long-term user experience in recommender systems</a></strong>
 	<br /><div class='allAuthors'><span class='ellipsis'>...</span>Yuyan Wang, Mohit Sharma, Can Xu, Sriraj Badam, Qian Sun, Lee Richardson, Lisa Chung, Ed H Chi, Minmin Chen</div>
+		<i><div class='Venue'><span class='ellipsis'>...</span>KDD 2022</i></li>
+
 				
 </ul><h4>Machine Learning</h4><ul><li class='paper ml'>
   <strong><a href='https://arxiv.org/pdf/1902.09689.pdf'>AntisymmetricRNN: A Dynamical System View on Recurrent Neural Networks</a></strong>
