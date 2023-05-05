@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="google-site-verification" content="KasJ1V1llzRCYayus_93GBTHtkShBLWTNna16qCOqME" />
+		<meta property="og:title" content="Minmin Chen" />
+		<meta property="og:type" content="profile" />
+		<meta property="og:url" content="http://minminc.github.io/" />
+		<meta property="og:image" content="" />
+		<meta property="profile:first_name" content="Minmin" />
+		<meta property="profile:last_name" content="Chen" />
+		<meta property="profile:username" content="minimnc" />
+		<meta property="profile:gender" content="female" />
+		<meta name="keywords" content="Minmin Chen, Google, computer science, machine learning, research, recommendaiton systems, reinforcement learning, Washington University in St. Louis, Tsinghua University">
+		<meta name="description" content="Minmin Chen's Research">
+		<meta http-equiv="content-language" content="en-us">
+		<title>Alex Beutel</title>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Molengo" />
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cantarell" />
+		<link rel="stylesheet" type="text/css" href="/styles.css" />
+		<style>
+			#mainBody {width: 800px; min-height: 400px; margin-left: auto; margin-right: auto; margin-top: 25px;}
+			#mainBody p { padding-bottom: 10px; }
+			#mainBody a { padding-left: 2px; padding-right: 2px; }
+			#mainBody a:hover { color: white; background-color: #2e2e2e; }
+			#contactPanel a:hover { color: white; background-color: white; }
+			#contactPanel { float: right; width: 30px; height: 100%; padding-left: 15px; }
+			#intro {height: 130px; font-size: 18px; padding-bottom: 10px; }
+			#introold {height: 150px; font-size: 18px; padding-bottom: 10px; border-bottom: 1px solid #bebebe; }
+			#nametitle { font-family: 'Molengo', arial, serif; font-size: 40px; text-shadow: 1px 1px 1px #aaa; color: black; padding-bottom: 10px;  font-weight: normal;}
+			.subtitles { font-family: 'Molengo', arial, serif; font-size: 22px; color: #646464; padding-bottom: 10px; font-weight: normal;}
+			#aboutme p {padding-bottom: 20px;}
+			#news { padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #bebebe; }
+			#news-items { padding-top: 10px; max-height: 200px; overflow: scroll; }
+			.news-item { margin-top: 8px; margin-left: 15px; margin-right: 15px; padding: 8px; background-color: #f2f2f2;}
+			.project {padding-top: 15px; padding-bottom: 15px; border-top: 1px solid #bebebe; }
+			.project ul {margin-left: 30px; }
+			.project ul li {padding-bottom: 8px; }
+			h3 {font-size: 1.3em; font-weight: bold; }
+			h4 {font-size: 1.15em; padding-bottom: 5px; }
+			.special { color: #AA0000; }
+			.special a { color: #AA0000; }
+			.author_link a { text-decoration: none; }
+			.author_link a:hover { text-decoration: underline; color: black; background-color: white;}
+			.venue_link a { text-decoration: none; }
+			.venue_link a:hover { text-decoration: underline; color: black; background-color: white;}
+			.extra_link a { text-decoration: none; font-size: 0.8em; }
+			.extra_link a:hover { text-decoration: underline; color: black; background-color: white;}
+			.tag_button { border-radius: 10px; border: 1px solid; border-color: #AA0000; padding: 3px; margin-left: 10px; font-size: 14px; cursor: pointer; } 
+			.tag_button_clicked { background-color: #AA0000; color: white; }
+			.allAuthors {padding-bottom: 1px;}
+			.ellipsis {display: none; float: right; margin-top: 1em; font-size:18px;}
+			.ellipsis:hover {font-weight: bold; cursor: pointer;}
+			#filter_by_tags { padding-bottom: 15px; }
+		</style>
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-3316326-10']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+		<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+	    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">
+			var last_selected = false;
+			var valid_keys = ['recsys', 'fraud', 'sysml', 'graph', 'geom', 'mlfairness', 'robustness', 'rl', 'nlp']
+			$(window).on('hashchange', function(e){
+				var param = window.location.hash.substr(1);
+				//if(param != "") { filterBy(param, false); }
+			});
+			function checkForKey(mylist, key) {
+				for (i = 0; i < mylist.length; i++) {
+					if(mylist[i] == key) { return true; }
+				}
+				return false;
+			}
+			function filterBy(key, reset = true) {
+				if (!checkForKey(valid_keys,key)) {
+					key = "";
+				}
+				//window.location.hash = "#" + key
+				if (reset && key == last_selected) { 
+					last_selected = false; 
+					//window.location.hash = ""
+					$(".paper").fadeIn();
+					$(".tag_button").removeClass("tag_button_clicked");
+				} else { 
+					last_selected = key; 
+					$(".paper").filter(function(index) { return !$(this).hasClass(key); }).fadeOut();
+					$(".tag_button").filter(function(index) { return $(this).hasClass(key); }).addClass("tag_button_clicked");
+				}
+				$(".paper").filter(function(index) { return $(this).hasClass(key); }).fadeIn();
+				$(".tag_button").filter(function(index) { return !$(this).hasClass(key); }).removeClass("tag_button_clicked");
+				window.location.hash = ""
+			}
+			function jumpTo(loc) {
+				document.getElementById(loc).scrollIntoView();
+			}
+			$( document ).ready(function() {
+				var param = window.location.hash.substr(1);
+				if(param != "") { filterBy(param, false); }
+
+				// Handle very long author lists
+				authorlists = document.getElementsByClassName("allAuthors");
+				for (a = 0; a < authorlists.length; a++) {
+					auth = authorlists[a];
+					if (auth.offsetHeight > 40 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+						//auth.style.height = "2.1em";
+						//auth.style.overflow = "hidden";
+						auth.style.paddingBottom = "3px";
+
+						e = auth.getElementsByClassName("ellipsis")[0];
+						//e.style.display = "block";
+						e.addEventListener("click", function(c) {
+							console.log(c);
+							c.target.style.display="none";
+							c.target.parentElement.style.overflow="";
+							c.target.parentElement.style.height = "";
+						})
+					}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<!--<script type='text/javascript' src='/header.js'></script>-->
+		<div id='header2'></div>
+		<div id='header'>
+			<span id='name' itemprop="name">Minmin Chen<span style='letter-spacing:0.075em;padding-left: 3px;'>...</span></span>
+			<span id='links'><a href='/' onClick="_gaq.push(['_trackEvent', 'top', 'click', 'about']);">About Me</a><a href='/projects.html' onClick="_gaq.push(['_trackEvent', 'top', 'click', 'research']);">Research</a><a style='padding-right:10px' href='/AlexBeutelCV.pdf' onClick="_gaq.push(['_trackEvent', 'top', 'click', 'CV']);">CV</a></span>
+		</div>
+		<div id='mainBody'>
+			<div id='intro'>
+				<img src='/images/AlexBeutel-small3.jpg' title='Minmin Chen' alt='Minmin Chen' style='float: right; margin-top:0px; padding-right: 0px; padding-bottom: 10px; height:175px; clip-path: circle(80px at center);'/>
+				<div style='float: left; text-align: left; padding-top: 40px;'>
+					<h1 id='nametitle' style='font-size: 40px;' itemprop="name">Minmin Chen</h1>
+					<h2 class='subtitles'>Senior Staff Research Scientist at Google</h2>
+				</div>
+			</div>
+			<div id='aboutme' style='margin-top: 15px;'>
+				<h3 style='padding-bottom: 15px;'>About Me</h3>
+				<p>I am a senior staff research scientist at Google Brain.  I received my PhD from Washington University in St. Louis, advised by <a href='https://www.cs.cornell.edu/~kilian/'>Kilian Weinberger</a>. My main research interests are in reinforcement learning and bandits algorithms and their applications in recommender systems. I am passionate about bringing latest ML technologies to real life, especially transforming recommendation experiences. </p>
+				<p>Email me at <a title='Click here to email me' onmousedown='this.href="mail"+"to:"+"minminc"+"@"+"google"+"."+"com";' style='padding: 0; cursor: pointer;'><img style='margin: 0px -2px -3px -1px; height: 1em;' src='/images/e1.png' onmouseover='this.src="/images/e2.png";' onmouseout='this.src="/images/e1.png";'></img></a>  or contact me at <a href='https://www.linkedin.com/in/minmin-chen-88411311/' target='_blank' rel="noopener noreferrer">LinkedIn</a>.</p>
+			</div>
+
+			<div class='project'>
+				<div style='padding-bottom: 10px'> 
+					<span style='font-size: 1.3em; font-weight: bold;'>Select Publications</span> (<a href='https://scholar.google.com/citations?user=kR7DersAAAAJ&hl=en&oi=ao' target='_blank' rel="noopener noreferrer">Google Scholar</a>)
+				</div>
+    <h4>Recommendation Systems</h4><ul><li class='paper recsys'>
+	<strong><a href='https://dl.acm.org/doi/pdf/10.1145/3523227.3546758'>Off-Policy Actor Critic for Recommender Systems</a></strong>
+	<br /><div class='allAuthors'><span class='ellipsis'>...</span>Minmin Chen, Can Xu, Vince Gatto, Devanshu Jain, Aviral Kumar, Ed Chi</div>
+
+
+</ul><h4>Machine Learning</h4><ul><li class='paper ml'>
+  <strong><a href='https://arxiv.org/pdf/1902.09689.pdf'>AntisymmetricRNN: A Dynamical System View on Recurrent Neural Networks</a></strong>
+	<br /><div class='allAuthors'><span class='ellipsis'>...</span>Minmin Chen, Can Xu, Vince Gatto, Devanshu Jain, Aviral Kumar, Ed Chi</div>
+        
+
+</ul>
+    </div>
+    </div>
+		<div id='footer'>
+			<span id='cp'>&copy; 2023 Minmin Chen</span>
+		</div>
+	</body>
+</html>
